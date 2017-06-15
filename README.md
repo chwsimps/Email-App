@@ -1,8 +1,4 @@
 # Email App
-======
-
-### Live App Demo
-
 
 ### Tech Stack
 * Angular.js
