@@ -11,3 +11,5 @@
 2. `cd Email-App`
 3. `npm install`
 4. `npm start`
+
+Note, webpack and webpack-dev-server will need to be installed to run locally - `npm i -g webpack webpack-dev-server`
