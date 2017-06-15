@@ -1,0 +1,65 @@
+.nav {
+  background: #4885ed;
+  border-bottom: .1em solid lightgray;
+  padding-left: 12.5em;
+  @include tablet {
+    padding-left: 0;
+  }
+
+  &_tabs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .mobile-menu {
+      display: none;
+      width: 25%;
+      @include tablet {
+        display: block;
+      }
+
+      div {
+        width: 4em;
+        height: .2em;
+        background: white;
+        margin: .5em 0;
+        margin-left: 2em;
+      }
+    }
+
+    .tab {
+      font-size: 1.5em;
+      padding: 1em 2em;
+      margin: 0;
+      width: 8em;
+      text-align: center;
+      color: white;
+      border-bottom: .1em solid transparent;
+      transition: all .25s ease-in-out;
+
+      @include tablet {
+        width: 25%;
+        padding: 1em;
+      }
+
+      &:hover, &.active {
+        cursor: pointer;
+        color: black;
+        border-bottom: .1em solid #db3236;
+      }
+    }
+
+    #workTab {
+      &:hover, &.active {
+        border-bottom: .1em solid #3cba54;
+      }
+    }
+
+    #travelTab {
+      &:hover, &.active {
+        border-bottom: .1em solid #f4c20d;
+      }
+    }
+  }
+}

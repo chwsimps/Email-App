@@ -1,0 +1,118 @@
+<header class="nav">
+  <div class="nav_tabs">
+    <div ng-click="showMobileSidebar()" class="mobile-menu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <p ng-click="filterEmails('all'); activeTab('primary')"
+       id="primaryTab" class="tab active">
+       Primary
+    </p>
+    <p ng-click="filterEmails('work'); activeTab('work')"
+       id="workTab" class="tab">
+       Work
+    </p>
+    <p ng-click="filterEmails('travel'); activeTab('travel')"
+       id="travelTab" class="tab">
+       Travel
+    </p>
+  </div>
+</header>
+
+<aside class="sidebar">
+  <div class="sidebar_compose">
+    Compose
+  </div>
+  <div class="sidebar_user">
+    <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/3/000/1b6/34b/26447ac.jpg">
+    <p class="user-name">Chase Simpson</p>
+    <p class="user-date">{{ today | date }}</p>
+  </div>
+  <div class="sidebar_actions">
+    <p ng-click="filterEmails('all'); activeTab('primary')">
+      Inbox
+      <span>({{inboxCount}})</span>
+    </p>
+    <p ng-click="toggleTags()">
+      Tags
+      <span>({{totalTagCount}})</span>
+    </p>
+    <p ng-show="showTag" ng-click="filterEmails('work'); activeTab('work')">
+      Work
+      <span>({{totalWorkCount}})</span>
+    </p>
+    <p ng-show="showTag" ng-click="filterEmails('travel'); activeTab('travel')">
+      Travel
+      <span>({{totalTravelCount}})</span>
+    </p>
+  </div>
+</aside>
+
+<main class="container">
+  <div class="container_top">
+    <div class="search-emails">
+      <input ng-model="search" type="text" placeholder="Search">
+    </div>
+    <div class="action-buttons">
+      <button ng-if="viewEmail"
+              ng-click="backToEmailList()"
+              class="btn btn-default" type="button">
+              Back
+      </button>
+      <div class="btn-group">
+        <button ng-disabled="selectedEmail.length < 1"
+                type="button" class="btn btn-primary dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Tags <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Travel</a></li>
+          <li><a href="#">Work</a></li>
+        </ul>
+      </div>
+      <button ng-click="deleteEmails(selectedEmail)"
+              ng-disabled="selectedEmail.length < 1"
+              class="btn btn-danger" type="button">
+              Delete
+      </button>
+    </div>
+  </div>
+
+  <div class="container_emails">
+    <div ng-repeat="email in emails | filter:search"
+         ng-click="checkEmail(email)"
+         ng-if="!viewEmail"
+         class="email">
+      <input ng-model="selectedEmail"
+             ng-checked="checkedEmail(email)"
+             ng-click="$event.stopPropagation(); toggleSelectedEmails(email.id)"
+             class="email_checkbox" type="checkbox">
+      <p class="email_subject">
+        <span>{{email.sender}}</span>
+        {{email.subject}}
+      </p>
+      <div ng-bind-html="email.body" class="email_body"></div>
+      <span class="email_date">{{email.date | date:'MMM d'}}</span>
+      <div ng-init="tagsCount()" class="email_tags">
+        <p ng-repeat="tag in email.tags"
+           ng-class="tag == 'work' ? 'work' : 'travel'"
+           class="email-tag">
+           {{tag}}
+        </p>
+      </div>
+    </div>
+
+    <div ng-if="viewEmail"
+         class="detailed detailed_email">
+         <p class="detailed_sender">{{detailedEmail.sender}}</p>
+         <h3 class="detailed_subject">{{detailedEmail.subject}}</h3>
+         <div ng-bind-html="detailedEmail.body" class="detailed_body"></div>
+         <p ng-repeat="tag in detailedEmail.tags"
+            ng-class="tag == 'work' ? 'work' : 'travel'"
+            class="detailed_tag">
+            {{tag}}
+         </p>
+    </div>
+  </div>
+</main>

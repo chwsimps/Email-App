@@ -1,0 +1,201 @@
+.container {
+  width: 100%;
+  padding: 0 0 0 12.5em;
+  margin: 0;
+  @include tablet {
+    padding: 0;
+  }
+
+  &_top {
+    display: flex;
+    background: white;
+    border-bottom: .1em solid lightgray;
+    @include tablet {
+      flex-wrap: wrap;
+    }
+
+    .search-emails {
+      width: 50%;
+      border-right: .1em solid lightgray;
+      @include tablet {
+        width: 100%;
+        border-bottom: .1em solid lightgray;
+        border-right: none;
+      }
+
+      input {
+        color: black;
+        font-size: 1.5em;
+        padding: .5em 1em;
+        width: 100%;
+        border: none;
+        outline: none;
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      width: 50%;
+      align-items: center;
+      justify-content: center;
+      @include tablet {
+        width: 100%;
+        padding: 1em 0;
+      }
+
+      button {
+        padding: .35em 1em;
+        margin: 0 1em;
+
+        &.dropdown-toggle {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  &_emails {
+    width: 100%;
+    background: white;
+
+    .email {
+      position: relative;
+      padding: 1em;
+      border-bottom: .1em solid lightgray;
+
+      &:hover {
+        cursor: pointer;
+        background: #efefef;
+      }
+
+      &_checkbox {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2em;
+        height: 2em;
+      }
+
+      &_subject {
+        font-size: 1.5em;
+        padding-left: 3em;
+        margin: 0;
+        @include tablet {
+          width: 90%;
+        }
+
+        span {
+          font-weight: 500;
+          padding-right: 1em;
+          @include tablet {
+            display: block;
+          }
+        }
+      }
+
+      &_body {
+        width: 90%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 2em;
+        padding-left: 4.5em;
+
+        p {
+          font-size: 1.5em;
+          color: gray;
+        }
+      }
+
+      &_date {
+        position: absolute;
+        text-align: center;
+        width: 10%;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2em;
+        @include tablet {
+          width: 12.5%;
+        }
+      }
+
+      &_tags {
+        .email-tag {
+          display: inline-block;
+          background: lightgray;
+          margin-left: 2em;
+          padding: .25em 1em;
+          color: white;
+          line-height: 1;
+          margin-bottom: 0;
+          margin-top: 1em;
+          font-size: 1.2em;
+          border-radius: .2em;
+          font-weight: 500;
+
+          &:first-child {
+            margin-left: 3.75em;
+          }
+
+          &.work {
+            background: #3cba54;
+          }
+
+          &.travel {
+            background: #f4c20d;
+          }
+        }
+      }
+    }
+
+    .detailed {
+      &_email {
+        padding: 5em;
+        @include tablet {
+          padding: 5em 3em;
+        }
+      }
+
+      &_sender {
+        font-size: 1.5em;
+        border-bottom: 1px solid lightgray;
+        margin: 0;
+        padding-bottom: 1em;
+      }
+
+      &_subject {
+        font-size: 2.5em;
+        font-weight: 500;
+        margin: 0;
+        padding: 1em 0;
+      }
+
+      &_body {
+        font-size: 1.5em;
+      }
+
+      &_tag {
+        display: inline-block;
+        background: lightgray;
+        margin-right: 2em;
+        padding: 0.25em 1em;
+        color: white;
+        line-height: 1;
+        margin-bottom: 0;
+        margin-top: 1em;
+        font-size: 1.2em;
+        border-radius: 0.2em;
+        font-weight: 500;
+
+        &.work {
+          background: #3cba54;
+        }
+
+        &.travel {
+          background: #f4c20d;
+        }
+      }
+    }
+  }
+}
